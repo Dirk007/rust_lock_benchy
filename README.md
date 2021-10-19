@@ -4,6 +4,16 @@ Just a little test to see how different lock-implementations in rust work out in
 
 Use like `./run_tests.sh` to run all tests at all.
 
+## Locks used in this benchmark
+
+- tokio::sync::Mutex
+- tokio::sync::RwLock
+- [https://github.com/Amanieu/parking_lot](parking_lot)::RwLock
+
+## Contribution
+Feel free to PR changes for whatever you want.
+Also bench-outputs for different systems are very welcome.
+
 ## Results for a MacBook Air M1 (aarch64):
 ```
 CPU-Info: sysctl -a | grep machdep.cpu
@@ -109,4 +119,5 @@ pwlock> (10 samples) took 41.729ms (48 readers, 2 writers, 40000 reads, 4 writes
 pwlock> (10 samples) took 40.844ms (46 readers, 4 writers, 40000 reads, 4 writes)
 pwlock> (10 samples) took 77.676ms (99 readers, 1 writers, 40000 reads, 4 writes)
 pwlock> (10 samples) took 78.554ms (98 readers, 2 writers, 40000 reads, 4 writes)
-pwlock> (10 samples) took 82.872ms (96 readers, 4 writers, 40000 reads, 4 writes)```
+pwlock> (10 samples) took 82.872ms (96 readers, 4 writers, 40000 reads, 4 writes)
+```
