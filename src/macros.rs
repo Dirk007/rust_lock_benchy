@@ -1,0 +1,73 @@
+#[cfg(feature = "mutex")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(Mutex::new($a))
+    }
+);
+
+#[cfg(feature = "mutex")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.lock().await
+    }
+);
+
+#[cfg(feature = "mutex")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.lock().await
+    }
+);
+
+#[cfg(feature = "rwlock")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(RwLock::new($a))
+    }
+);
+
+#[cfg(feature = "rwlock")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.read().await
+    }
+);
+
+#[cfg(feature = "rwlock")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.write().await
+    }
+);
+
+#[cfg(feature = "pwlock")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(RwLock::new($a))
+    }
+);
+
+#[cfg(feature = "pwlock")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.read()
+    }
+);
+
+#[cfg(feature = "pwlock")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.write()
+    }
+);
+
+/// Just a DRY remover
+macro_rules! to_usize(
+    ($a:ident, $b: expr) => {
+        $a
+        .value_of($b)
+        .unwrap()
+        .parse::<usize>()
+        .expect("Values must be numeric");
+    }
+);
