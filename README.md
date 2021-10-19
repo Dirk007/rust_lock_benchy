@@ -8,7 +8,7 @@ Use like `./run_tests.sh` to run all tests at all.
 
 - tokio::sync::Mutex
 - tokio::sync::RwLock
-- [https://github.com/Amanieu/parking_lot](parking_lot)::RwLock
+- [https://github.com/Amanieu/parking_lot]([parking_lot](https://github.com/Amanieu/parking_lot))::RwLock
 
 ## Contribution
 Feel free to PR changes for whatever you want.
