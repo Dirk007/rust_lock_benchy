@@ -2,7 +2,7 @@
 
 set -eu
 
-TYPES=("mutex" "rwlock" "pwlock")
+TYPES=("mutex" "rwlock" "plmutex" "plrwlock")
 
 echo "Building..."
 for WHAT in ${TYPES[*]}

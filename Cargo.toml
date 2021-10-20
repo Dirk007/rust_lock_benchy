@@ -1,6 +1,6 @@
 [package]
 name = "test_mux"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Dirk Faust <dirk@faustbande.de>"]
 edition = "2018"
 
@@ -13,7 +13,8 @@ clap = { version = "2.33"}
 parking_lot = { version = "0.11", optional = true }
 
 [features]
-default = ["rwlock"]
+default = ["plmutex"]
 mutex = []
 rwlock = []
-pwlock = ["parking_lot"]
+plmutex = ["parking_lot"]
+plrwlock = ["parking_lot"]

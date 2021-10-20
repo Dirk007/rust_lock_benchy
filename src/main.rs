@@ -1,4 +1,6 @@
-#[cfg(feature = "pwlock")]
+#[cfg(feature = "plmutex")]
+use parking_lot::Mutex;
+#[cfg(feature = "plrwlock")]
 use parking_lot::RwLock;
 use std::{
     sync::Arc,
@@ -14,8 +16,11 @@ type Inner = String;
 type Sync = Mutex<Inner>;
 #[cfg(feature = "rwlock")]
 type Sync = RwLock<Inner>;
-#[cfg(feature = "pwlock")]
+#[cfg(feature = "plmutex")]
+type Sync = Mutex<Inner>;
+#[cfg(feature = "plrwlock")]
 type Sync = RwLock<Inner>;
+
 type Lock = Arc<Sync>;
 
 #[macro_use]
@@ -27,9 +32,7 @@ const SAMPLES: usize = 10;
 
 async fn reader(_id: usize, thing: Lock, rounds: usize) {
     for _ in 0..rounds {
-        {
-            let _ = lock_read!(thing);
-        }
+        let _ = lock_read!(thing);
     }
 }
 

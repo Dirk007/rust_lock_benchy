@@ -40,21 +40,42 @@ macro_rules! lock_write(
     }
 );
 
-#[cfg(feature = "pwlock")]
+#[cfg(feature = "plmutex")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(Mutex::new($a))
+    }
+);
+
+#[cfg(feature = "plmutex")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.lock()
+    }
+);
+
+#[cfg(feature = "plmutex")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.lock()
+    }
+);
+
+#[cfg(feature = "plrwlock")]
 macro_rules! create_lock(
     ($a:expr) => {
         Arc::new(RwLock::new($a))
     }
 );
 
-#[cfg(feature = "pwlock")]
+#[cfg(feature = "plrwlock")]
 macro_rules! lock_read(
     ($a:ident) => {
         $a.read()
     }
 );
 
-#[cfg(feature = "pwlock")]
+#[cfg(feature = "plrwlock")]
 macro_rules! lock_write(
     ($a:ident) => {
         $a.write()
