@@ -8,13 +8,15 @@ Use like `./run_tests.sh` to run all tests at all.
 
 - tokio::sync::Mutex
 - tokio::sync::RwLock
-- [https://github.com/Amanieu/parking_lot]([parking_lot](https://github.com/Amanieu/parking_lot))::RwLock
+- [Parking Lot RwLock](https://github.com/Amanieu/parking_lot)
 
 ## Contribution
-Feel free to PR changes for whatever you want.
+Feel free to PR changes for whatever you want to test additionally.
 Also bench-outputs for different systems are very welcome.
 
 ## Results for a MacBook Air M1 (aarch64):
+
+### CPU
 ```
 CPU-Info: sysctl -a | grep machdep.cpu
 machdep.cpu.brand_string: Apple M1
@@ -23,6 +25,10 @@ machdep.cpu.cores_per_package: 8
 machdep.cpu.logical_per_package: 8
 machdep.cpu.thread_count: 8
 ```
+
+### OS
+
+### Bench
 
 ```
 mutex> (10 samples) took 33.588ms (9 readers, 1 writers, 40000 reads, 4 writes)
@@ -56,7 +62,9 @@ pwlock> (10 samples) took 370.600ms (98 readers, 2 writers, 40000 reads, 4 write
 pwlock> (10 samples) took 376.998ms (96 readers, 4 writers, 40000 reads, 4 writes)
 ```
 
-## Results for Linux
+## Results for x64 Linux
+
+### CPU 
 CPU 0..7:
 ```
 processor   : 0
@@ -87,10 +95,13 @@ cache_alignment : 64
 address sizes   : 39 bits physical, 48 bits virtual
 power management:
 ```
+
+### OS
 ```
 Linux 5.14.9-arch2-1 #1 SMP PREEMPT Fri, 01 Oct 2021 19:03:20 +0000 x86_64 GNU/Linux
 ```
 
+### Bench
 ```mutex> (10 samples) took 71.247ms (9 readers, 1 writers, 40000 reads, 4 writes)
 mutex> (10 samples) took 71.361ms (8 readers, 2 writers, 40000 reads, 4 writes)
 mutex> (10 samples) took 70.974ms (6 readers, 4 writers, 40000 reads, 4 writes)
@@ -120,4 +131,63 @@ pwlock> (10 samples) took 40.844ms (46 readers, 4 writers, 40000 reads, 4 writes
 pwlock> (10 samples) took 77.676ms (99 readers, 1 writers, 40000 reads, 4 writes)
 pwlock> (10 samples) took 78.554ms (98 readers, 2 writers, 40000 reads, 4 writes)
 pwlock> (10 samples) took 82.872ms (96 readers, 4 writers, 40000 reads, 4 writes)
+```
+
+## Results for x64 MacOS
+
+### CPU
+```machdep.cpu.brand_string: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+machdep.cpu.core_count: 6
+machdep.cpu.cores_per_package: 8
+machdep.cpu.extfamily: 0
+machdep.cpu.extfeature_bits: 1241984796928
+machdep.cpu.extfeatures: SYSCALL XD 1GBPAGE EM64T LAHF LZCNT PREFETCHW RDTSCP TSCI
+machdep.cpu.extmodel: 9
+machdep.cpu.family: 6
+machdep.cpu.feature_bits: 9221959987971750911
+machdep.cpu.features: FPU VME DE PSE TSC MSR PAE MCE CX8 APIC SEP MTRR PGE MCA CMOV PAT PSE36 CLFSH DS ACPI MMX FXSR SSE SSE2 SS HTT TM PBE SSE3 PCLMULQDQ DTES64 MON DSCPL VMX EST TM2 SSSE3 FMA CX16 TPR PDCM SSE4.1 SSE4.2 x2APIC MOVBE POPCNT AES PCID XSAVE OSXSAVE SEGLIM64 TSCTMR AVX1.0 RDRAND F16C
+machdep.cpu.leaf7_feature_bits: 43804591 1073741824
+machdep.cpu.leaf7_feature_bits_edx: 2617257472
+machdep.cpu.leaf7_features: RDWRFSGS TSC_THREAD_OFFSET SGX BMI1 AVX2 SMEP BMI2 ERMS INVPCID FPU_CSDS MPX RDSEED ADX SMAP CLFSOPT IPT SGXLC MDCLEAR TSXFA IBRS STIBP L1DF SSBD
+machdep.cpu.logical_per_package: 16
+```
+
+### OS
+```
+Darwin Dirks-CS-MacBook-Pro-606.local 20.6.0 Darwin Kernel Version 20.6.0: Mon Aug 30 06:12:21 PDT 2021; root:xnu-7195.141.6~3/RELEASE_X86_64 x86_64
+```
+
+### Bench
+
+```
+mutex> (10 samples) took 74.148ms (9 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 73.365ms (8 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 74.089ms (6 readers, 4 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 363.647ms (49 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 366.268ms (48 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 363.988ms (46 readers, 4 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 734.313ms (99 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 733.513ms (98 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 730.374ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+rwlock> (10 samples) took 75.369ms (9 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 80.974ms (8 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 80.626ms (6 readers, 4 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 401.006ms (49 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 436.126ms (48 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 455.792ms (46 readers, 4 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 893.763ms (99 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 897.464ms (98 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 860.526ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+pwlock> (10 samples) took 7.379ms (9 readers, 1 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 6.150ms (8 readers, 2 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 6.589ms (6 readers, 4 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 31.055ms (49 readers, 1 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 29.952ms (48 readers, 2 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 30.405ms (46 readers, 4 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 57.603ms (99 readers, 1 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 57.321ms (98 readers, 2 writers, 40000 reads, 4 writes)
+pwlock> (10 samples) took 57.479ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
 ```
