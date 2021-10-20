@@ -8,14 +8,14 @@ macro_rules! create_lock(
 #[cfg(feature = "mutex")]
 macro_rules! lock_read(
     ($a:ident) => {
-        $a.lock().await
+        $a.lock().unwrap()
     }
 );
 
 #[cfg(feature = "mutex")]
 macro_rules! lock_write(
     ($a:ident) => {
-        $a.lock().await
+        $a.lock().unwrap()
     }
 );
 
@@ -29,11 +29,53 @@ macro_rules! create_lock(
 #[cfg(feature = "rwlock")]
 macro_rules! lock_read(
     ($a:ident) => {
-        $a.read().await
+        $a.read().unwrap()
     }
 );
 
 #[cfg(feature = "rwlock")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.write().unwrap()
+    }
+);
+
+#[cfg(feature = "tmutex")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(Mutex::new($a))
+    }
+);
+
+#[cfg(feature = "tmutex")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.lock().await
+    }
+);
+
+#[cfg(feature = "tmutex")]
+macro_rules! lock_write(
+    ($a:ident) => {
+        $a.lock().await
+    }
+);
+
+#[cfg(feature = "trwlock")]
+macro_rules! create_lock(
+    ($a:expr) => {
+        Arc::new(RwLock::new($a))
+    }
+);
+
+#[cfg(feature = "trwlock")]
+macro_rules! lock_read(
+    ($a:ident) => {
+        $a.read().await
+    }
+);
+
+#[cfg(feature = "trwlock")]
 macro_rules! lock_write(
     ($a:ident) => {
         $a.write().await
@@ -89,6 +131,6 @@ macro_rules! to_usize(
         .value_of($b)
         .unwrap()
         .parse::<usize>()
-        .expect("Values must be numeric");
+        .expect("Values must be numeric")
     }
 );

@@ -1,0 +1,1 @@
+TYPES=("mutex" "rwlock" "tmutex" "trwlock" "plmutex" "plrwlock")

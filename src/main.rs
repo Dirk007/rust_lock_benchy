@@ -1,20 +1,31 @@
+use std::{
+    process::exit,
+    sync::Arc,
+    time::{Duration, Instant},
+};
+
+type Inner = String;
+
 #[cfg(feature = "plmutex")]
 use parking_lot::Mutex;
 #[cfg(feature = "plrwlock")]
 use parking_lot::RwLock;
-use std::{
-    sync::Arc,
-    time::{Duration, Instant},
-};
 #[cfg(feature = "mutex")]
-use tokio::sync::Mutex;
+use std::sync::Mutex;
 #[cfg(feature = "rwlock")]
+use std::sync::RwLock;
+#[cfg(feature = "tmutex")]
+use tokio::sync::Mutex;
+#[cfg(feature = "trwlock")]
 use tokio::sync::RwLock;
 
-type Inner = String;
 #[cfg(feature = "mutex")]
 type Sync = Mutex<Inner>;
 #[cfg(feature = "rwlock")]
+type Sync = RwLock<Inner>;
+#[cfg(feature = "tmutex")]
+type Sync = Mutex<Inner>;
+#[cfg(feature = "trwlock")]
 type Sync = RwLock<Inner>;
 #[cfg(feature = "plmutex")]
 type Sync = Mutex<Inner>;
@@ -75,6 +86,11 @@ async fn acquire_one_sample(
 #[tokio::main(flavor = "multi_thread", worker_threads = 8)]
 async fn main() {
     let matches = command_line::parse_arguments();
+
+    if matches.is_present("version") {
+        println!(env!("CARGO_PKG_VERSION"));
+        exit(0);
+    }
 
     let reads = to_usize!(matches, "reads");
     let write_modulo = to_usize!(matches, "writemod");

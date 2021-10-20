@@ -4,6 +4,13 @@ use clap::{App, Arg, ArgMatches};
 pub fn parse_arguments<'a>() -> ArgMatches<'a> {
     App::new("Mux benchy")
         .arg(
+            Arg::with_name("version")
+                .short("v")
+                .long("version")
+                .help("print version")
+                .takes_value(false),
+        )
+        .arg(
             Arg::with_name("reads")
                 .short("r")
                 .long("reads")
