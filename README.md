@@ -203,3 +203,68 @@ plrwlock> (10 samples) took 59.701ms (98 readers, 2 writers, 40000 reads, 4 writ
 plrwlock> (10 samples) took 59.422ms (96 readers, 4 writers, 40000 reads, 4 writes)
 -------------------------------------
 ```
+
+## Results for AARCH64 Linux
+
+### CPU
+CPU 0..3 (overclocked - vcgencmd measure_clock arm -> frequency(48)=60016992)
+```
+processor	: 0
+BogoMIPS	: 108.00
+Features	: fp asimd evtstrm crc32 cpuid
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd08
+CPU revision	: 3
+```
+
+### OS
+```
+Linux pi64 5.10.60-v8+ #1449 SMP PREEMPT Wed Aug 25 15:01:33 BST 2021 aarch64 GNU/Linux
+```
+
+### Bench
+
+```
+mutex> (10 samples) took 213.895ms (9 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 215.289ms (8 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 218.373ms (6 readers, 4 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 1073.515ms (49 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 1069.438ms (48 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 1077.378ms (46 readers, 4 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 2184.096ms (99 readers, 1 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 2159.106ms (98 readers, 2 writers, 40000 reads, 4 writes)
+mutex> (10 samples) took 2159.851ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+rwlock> (10 samples) took 77.594ms (9 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 72.166ms (8 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 72.627ms (6 readers, 4 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 381.925ms (49 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 377.900ms (48 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 374.039ms (46 readers, 4 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 759.564ms (99 readers, 1 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 754.292ms (98 readers, 2 writers, 40000 reads, 4 writes)
+rwlock> (10 samples) took 748.338ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+plmutex> (10 samples) took 24.723ms (9 readers, 1 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 24.875ms (8 readers, 2 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 24.333ms (6 readers, 4 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 123.766ms (49 readers, 1 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 123.180ms (48 readers, 2 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 127.554ms (46 readers, 4 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 251.107ms (99 readers, 1 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 258.295ms (98 readers, 2 writers, 40000 reads, 4 writes)
+plmutex> (10 samples) took 258.163ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+plrwlock> (10 samples) took 12.736ms (9 readers, 1 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 13.207ms (8 readers, 2 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 12.545ms (6 readers, 4 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 60.171ms (49 readers, 1 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 61.631ms (48 readers, 2 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 61.773ms (46 readers, 4 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 120.902ms (99 readers, 1 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 123.718ms (98 readers, 2 writers, 40000 reads, 4 writes)
+plrwlock> (10 samples) took 122.591ms (96 readers, 4 writers, 40000 reads, 4 writes)
+-------------------------------------
+```
