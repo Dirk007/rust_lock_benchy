@@ -1,0 +1,78 @@
+BENCH VERSION: 0.3.0
+CPU: Architecture:        aarch64
+Byte Order:          Little Endian
+CPU(s):              4
+On-line CPU(s) list: 0-3
+Thread(s) per core:  1
+Core(s) per socket:  4
+Socket(s):           1
+Vendor ID:           ARM
+Model:               3
+Model name:          Cortex-A72
+Stepping:            r0p3
+CPU max MHz:         2200,0000
+CPU min MHz:         600,0000
+BogoMIPS:            108.00
+Flags:               fp asimd evtstrm crc32 cpuid
+SYSTEM: Linux 5.10.60-v8+ aarch64
+
+mutex> (10 samples) took 22.755ms (9 readers, 1 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 24.094ms (8 readers, 2 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 21.521ms (6 readers, 4 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 143.470ms (49 readers, 1 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 143.670ms (48 readers, 2 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 138.418ms (46 readers, 4 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 286.722ms (99 readers, 1 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 286.935ms (98 readers, 2 writers, 20000 reads, 4 writes)
+mutex> (10 samples) took 281.525ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
+rwlock> (10 samples) took 24.332ms (9 readers, 1 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 22.650ms (8 readers, 2 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 24.400ms (6 readers, 4 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 122.311ms (49 readers, 1 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 121.724ms (48 readers, 2 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 122.565ms (46 readers, 4 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 248.122ms (99 readers, 1 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 249.768ms (98 readers, 2 writers, 20000 reads, 4 writes)
+rwlock> (10 samples) took 248.940ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
+tmutex> (10 samples) took 103.780ms (9 readers, 1 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 103.682ms (8 readers, 2 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 104.468ms (6 readers, 4 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 534.900ms (49 readers, 1 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 520.763ms (48 readers, 2 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 530.375ms (46 readers, 4 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 1072.244ms (99 readers, 1 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 1066.467ms (98 readers, 2 writers, 20000 reads, 4 writes)
+tmutex> (10 samples) took 1067.274ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
+trwlock> (10 samples) took 36.231ms (9 readers, 1 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 36.104ms (8 readers, 2 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 35.613ms (6 readers, 4 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 190.011ms (49 readers, 1 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 187.986ms (48 readers, 2 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 189.499ms (46 readers, 4 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 381.752ms (99 readers, 1 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 385.135ms (98 readers, 2 writers, 20000 reads, 4 writes)
+trwlock> (10 samples) took 382.407ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
+plmutex> (10 samples) took 10.931ms (9 readers, 1 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 11.316ms (8 readers, 2 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 11.172ms (6 readers, 4 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 58.141ms (49 readers, 1 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 61.987ms (48 readers, 2 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 60.635ms (46 readers, 4 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 122.747ms (99 readers, 1 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 126.003ms (98 readers, 2 writers, 20000 reads, 4 writes)
+plmutex> (10 samples) took 118.938ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
+plrwlock> (10 samples) took 6.405ms (9 readers, 1 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 6.473ms (8 readers, 2 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 6.467ms (6 readers, 4 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 30.632ms (49 readers, 1 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 29.421ms (48 readers, 2 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 29.576ms (46 readers, 4 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 62.038ms (99 readers, 1 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 61.526ms (98 readers, 2 writers, 20000 reads, 4 writes)
+plrwlock> (10 samples) took 58.737ms (96 readers, 4 writers, 20000 reads, 4 writes)
+-------------------------------------
